@@ -2,6 +2,7 @@ package com.example.cardapioapp.activities
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
@@ -23,8 +24,20 @@ class RegisterViewModel : ViewModel() {
                 _infoMessage.emit("Os campos de senha não coincidem.")
             }
             else {
-                //fazer o cadastro
-                _infoMessage.emit("Cadastro feito com sucesso!")
+                val firebaseAuth = FirebaseAuth.getInstance()
+                firebaseAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            viewModelScope.launch {
+                                _infoMessage.emit("Cadastro feito com sucesso!")
+                            }
+                        } else {
+                           val errorMessage = task. exception?.message
+                            viewModelScope.launch {
+                                _infoMessage.emit("Erro ao realizar cadastro.")
+                            }
+                        }
+                    }
             }
         }
     }

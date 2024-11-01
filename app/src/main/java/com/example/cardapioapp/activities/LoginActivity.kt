@@ -80,7 +80,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun showErrorDialog(message: String) {
         AlertDialog.Builder(this)
-            .setTitle("Erro de Login")
+            .setTitle("Erro no Login")
             .setMessage(message)
             .setPositiveButton("OK", null)
             .show()
