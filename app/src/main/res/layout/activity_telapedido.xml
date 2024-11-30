@@ -18,7 +18,7 @@
             android:id="@+id/textView9"
             android:layout_width="110dp"
             android:layout_height="28dp"
-            android:text="$"
+            android:text="$val"
             android:textSize="24sp"
             tools:layout_editor_absoluteX="209dp"
             tools:layout_editor_absoluteY="546dp" />
