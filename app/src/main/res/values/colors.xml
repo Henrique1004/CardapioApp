@@ -2,6 +2,8 @@
 <resources>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
-    <color name="yellow">#50F0E600</color>
-    <color name="orange">#EFAD00</color>
+    <color name="yellow">#F4A500</color>
+    <color name="gray">#757575</color>
+    <color name="cream">#FFF6E5</color>
+    <color name="blue">#1E88E5</color>
 </resources>

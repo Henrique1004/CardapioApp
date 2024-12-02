@@ -1,4 +1,4 @@
-package com.example.cardapioapp.activities
+package com.example.cardapioapp.recoveringpassword
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -7,35 +7,36 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.cardapioapp.R
-import com.example.cardapioapp.databinding.ActivityRegisterBinding
+import com.example.cardapioapp.databinding.ActivityRecoveringPasswordBinding
 import kotlinx.coroutines.launch
 
-class RegisterActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityRegisterBinding
-    private val registerViewModel: RegisterViewModel by viewModels()
+class RecoveringPasswordActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityRecoveringPasswordBinding
+    private val recoveringPasswordViewModel: RecoveringPasswordViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setContentView(R.layout.activity_register)
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_recovering_password)
         enableEdgeToEdge()
 
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        binding = ActivityRecoveringPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupUI()
+        observeViewModel()
+    }
+
+    private fun observeViewModel() {
         lifecycleScope.launch {
-            registerViewModel.infoMessage.collect { message ->
+            recoveringPasswordViewModel.infoMessage.collect { message ->
                 showInfoDialog(message)
             }
-        }
+        }    }
 
-        binding.regButton.setOnClickListener {
-            val name = binding.editTextNome.text.toString()
+    private fun setupUI() {
+        binding.sendButton.setOnClickListener {
             val email = binding.editTextEmail.text.toString()
-            val password = binding.editTextSenha.text.toString()
-            val passwordConfirmation = binding.editTextConfSenha.text.toString()
-
-            registerViewModel.register(name, email, password, passwordConfirmation)
+            recoveringPasswordViewModel.recoveryPassword(email)
         }
 
         binding.returnButton.setOnClickListener {

@@ -1,4 +1,4 @@
-package com.example.cardapioapp.activities
+package com.example.cardapioapp.recoveringpassword
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
